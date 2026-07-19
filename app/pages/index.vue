@@ -2,10 +2,14 @@
   <div class="min-h-screen bg-gray-50">
     <!-- Header -->
     <header class="bg-white border-b border-gray-200 px-6 py-4">
+    <button 
+    @click="goHome" :key="home-button"
+    >
       <div class="max-w-2xl mx-auto">
         <h1 class="text-2xl font-bold text-green-700">Zero Homes</h1>
         <p class="text-sm text-gray-500">Colorado Rebate Eligibility Checker</p>
       </div>
+      </button>
     </header>
 
     <main class="max-w-2xl mx-auto px-6 py-10">
@@ -83,6 +87,7 @@
 
 <script setup lang="ts">
 import type { HomeownerAnswers } from '~/types'
+import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
@@ -168,5 +173,10 @@ function handleNext() {
     sessionStorage.setItem('answers', JSON.stringify(answers))
     router.push('/results')
   }
+}
+
+function goHome() {
+  currentStep.value = 0
+  router.push('/') 
 }
 </script>
